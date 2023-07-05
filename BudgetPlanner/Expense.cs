@@ -32,7 +32,7 @@ namespace BudgetPlanner
         {
             _category = category;
         }
-        public ExpenseCategory GettCategory()
+        public ExpenseCategory GetCategory()
         {
             return _category;
         }
@@ -48,7 +48,7 @@ namespace BudgetPlanner
 
         public override string ToString()
         {
-            return $"Amount: {_amount}, Category: {_category}, Date: {_date}";
+            return $"Category: {_category}, Amount: {_amount}, Date: {_date}";
         }
 
     }
