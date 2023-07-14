@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using System.IO;
+using System.Text.Json;
+
 
 namespace BudgetPlanner
 {
@@ -15,6 +20,10 @@ namespace BudgetPlanner
             expenses = new List<Expense>();
         }
 
+        public List<Expense> GetList()
+        {
+            return expenses;
+        }
 
         public void AddExpense(Expense expense)
         {
@@ -66,5 +75,20 @@ namespace BudgetPlanner
 
             return totalExpenses;
         }
+
+        public void SaveToFile(string filename, List<Expense> expenses)
+        {
+            string json = System.Text.Json.JsonSerializer.Serialize(expenses);
+            File.WriteAllText(filename, json);
+        }
+
+        //public void LoadFromFile(string filename)
+        //{
+        //    if (File.Exists(filename))
+        //    {
+        //        string json = File.ReadAllText(filename);
+        //        expenses = JsonConvert.DeserializeObject<List<Expense>>(json);
+        //    }
+        //}
     }
 }
