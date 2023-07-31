@@ -8,16 +8,47 @@ namespace BudgetPlanner
 {
     public class Expense
     {
+        private Guid _id;
         private decimal _amount;
         private ExpenseCategory _category;
         private DateTime _date;
 
-        public Expense(decimal amount, ExpenseCategory category, DateTime date)
+        public Expense(decimal amount, ExpenseCategory category, DateTime? date, Guid id)
         {
             this._amount = amount;
             this._category = category;
-            this._date = date;
+
+            if (date.HasValue)
+            {
+                this._date = date.Value;
+            }
+            else
+            {
+                this._date = DateTime.Now;
+            }
+
+            _id = id;
         }
+
+        public Expense(decimal amount, ExpenseCategory category, DateTime? date)
+        {
+            this._amount = amount;
+            this._category = category;
+
+            if (date.HasValue)
+            {
+                this._date = date.Value;
+            }
+            else
+            {
+                this._date = DateTime.Now;
+            }
+
+            _id = Guid.NewGuid();
+        }
+
+
+
 
         public void SetAmount(decimal amount)
         {
@@ -41,9 +72,18 @@ namespace BudgetPlanner
         {
             _date = date;
         }
-        public DateTime GeDate()
+        public DateTime GetDate()
         {
             return _date;
+        }
+
+        public void SetId(Guid id)
+        {
+            _id = id;
+        }
+        public Guid GetId()
+        {
+            return _id;
         }
 
         public override string ToString()

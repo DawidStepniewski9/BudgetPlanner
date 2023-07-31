@@ -8,8 +8,8 @@ namespace BudgetPlanner
 {
     public enum ExpenseCategory
     {
-        Food,
-        Rent,
-        Transport
-    }
+        Food = 1,
+        Rent = 2,
+        Transport = 3
+     }
 }
